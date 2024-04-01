@@ -1,0 +1,11 @@
+[package]
+name = "lurcar"
+edition = "2021"
+
+version.workspace = true
+
+[dependencies]
+anyhow = "1"
+bitcode = "0.6"
+byteorder = "1.5"
+
