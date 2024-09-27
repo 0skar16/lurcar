@@ -8,4 +8,9 @@ version.workspace = true
 anyhow = "1"
 bitcode = "0.6"
 byteorder = "1.5"
-
+serde = { version = "1.0.200", features = ["derive"] }
+fuser = { version = "*", optional = true}
+libc = {version = "*", optional = true}
+[features]
+default = ["fuse"]
+fuse = ["dep:fuser", "dep:libc"]

@@ -1,6 +1,9 @@
 [workspace]
 resolver = "2"
-members = ["crates/lurcar", "crates/lurcar-bin"]
+members = ["crates/lurcar", "crates/lurcar-tools"]
 
 [workspace.package]
-version = "0.5.0"
+version = "0.9.2"
+
+[profile.release]
+strip = true
