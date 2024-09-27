@@ -62,9 +62,6 @@ impl<R: Read> Archive<R> {
             last_entry_read: None,
         })
     }
-    /*pub fn entries(&mut self) -> EntryIterator<R> {
-
-    }*/
 }
 impl<W: Write + Seek> Archive<W> {
     pub fn append_file_entry<R: Read>(
@@ -96,13 +93,6 @@ impl<W: Write + Seek> Archive<W> {
                 unallocated_space_after,
             )
         } else {
-            /*if self.change_dir {
-                self.seek(io::SeekFrom::End(-(self.dir_len as i64)))?;
-
-                self.change_dir = false;
-            } else {
-                self.seek(io::SeekFrom::End(0))?;
-            }*/
             self.seek(io::SeekFrom::Start(
                 self.compute_full_archive_len()
                     - if let Some(last) = self.directory.file_entries.last() {
@@ -116,16 +106,6 @@ impl<W: Write + Seek> Archive<W> {
     }
 
     pub fn finalize_with_dir(mut self) -> Result<(W, Directory)> {
-        /*if !self.change_dir {
-            self.dir_pos = w.seek(io::SeekFrom::End(0))?;
-            let dir = self.directory;
-            let dir_buf = bitcode::encode(&dir);
-            self.dir_len = dir_buf.len() as u32;
-            w.write_all(&dir_buf)?;
-            w.seek(io::SeekFrom::Start(8))?;
-            w.write_u64::<LittleEndian>(self.dir_pos)?;
-            w.write_u32::<LittleEndian>(self.dir_len)?;
-        }*/
         let directory = self.write_directory()?;
         Ok((self.inner.into_inner(), directory))
     }
@@ -543,13 +523,6 @@ impl<I> Archive<I> {
             DirectoryEntry::Dir(dir) => self.remove_dir_entry(entry_id, dir),
         }
     }
-    /*pub fn allocate_new_entry_in_unallocated(&self, len: u64) -> Option<(u32, u64)> {
-        self.directory.file_entries
-            .iter().enumerate()
-            .find(|(_, entry)| {
-                entry.unallocated_space_after >= len
-            }).map(|(id, entry)| (id as u32 + 1, entry.unallocated_space_after - len))
-    }*/
 
     pub fn resolve_entry_path(&self, entry: DirectoryEntry) -> Option<PathBuf> {
         let mut path;
