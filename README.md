@@ -1,6 +1,6 @@
-LURCAR - Lu (R)andom a(C)cess (AR)chive
+# LURCAR
 
-# About
+The origin of the name: LU (R)andom a(C)cess (AR)chive
 
 It was supposed to be a straight forward archive for personal projects because nothing really fit my needs. It was built on top of the corpse of [QRCA](https://github.com/0skar16/qrca), which I brought back and archived for reference. Yet through the long development to adapt it to my needs, it became more of a file system. Whatever the case, if this is something you need, here you go.
 
