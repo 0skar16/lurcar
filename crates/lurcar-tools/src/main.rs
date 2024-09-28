@@ -235,7 +235,6 @@ pub fn main() {
                 .unwrap_or(&entry.len().to_string())
                 .parse::<u64>()
                 .expect("End wrong");
-            //er.read_to_write(stdout().lock(), range).unwrap();
             entry
                 .seek(std::io::SeekFrom::Start(start))
                 .expect("Couldn't seek to start of file");
@@ -247,7 +246,6 @@ pub fn main() {
                 .get_one::<String>("source")
                 .expect("Couldn't get source from args")
                 .clone();
-            //let directory = glob(&format!("{}/*",directory_s)).expect("Couldn't get contents of the folder");
             let arc_path = sub_matches
                 .get_one::<String>("out")
                 .map(|p| p.clone())
@@ -276,7 +274,6 @@ pub fn main() {
                 None
             };
 
-            //archive.pack(PathBuf::from(&source), root_name);
             let multi_proogress = MultiProgress::new();
             let mut len = 0;
             let mut entry_count = 0;
@@ -629,10 +626,7 @@ fn entry_to_path(dir: &Directory, id: u32) -> PathBuf {
     path
 }
 fn tree_ident(depth: usize, last_depths: &mut BTreeSet<usize>, is_last: bool) -> String {
-    //let t = format!("{}└──", if len > 1 {"├──\0".repeat(len-1)} else {String::new()});
-    //t.split("\0")
     let mut ident = String::new();
-    //ident.push_str(&"    ".repeat(depth));
     for i in 0..depth {
         if last_depths.contains(&i) {
             ident.push_str("│   ");
@@ -703,7 +697,6 @@ fn open_archive(sub_matches: &ArgMatches) -> (Archive<File>, PathBuf) {
         .expect("Couldn't get archive path from args")
         .clone();
     let arc_path = PathBuf::from(arc_path);
-    //let arc_file = File::open(&arc_path).expect("Couldn't open file");
     let arc_file = OpenOptions::new()
         .read(true)
         .write(true)
