@@ -1,3 +1,5 @@
+# ==Transferred to [Codeberg](https://codeberg.org/moonydev/lurcar)==
+
 # LURCAR
 
 The origin of the name: LU (R)andom a(C)cess (AR)chive
